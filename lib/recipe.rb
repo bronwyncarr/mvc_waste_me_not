@@ -1,5 +1,7 @@
 class Recipe
   attr_reader :id, :name, :description, :ingredients
+  
+  INPUTS = [:id, :name, :desciption, :ingredients]
 
   def initialize(id, name, description, ingredients)
     @id = id
@@ -9,6 +11,15 @@ class Recipe
   end
 
   def self.get_new_recipe
-    p 'hello'
+    recipe = {}
+    puts "Create a new recipe"
+    puts "Please enter the following information."
+    INPUTS.each do |item|
+      puts "#{item}: "
+      response = gets.strip
+      recipe[item] = response
+    end
+    recipe
+    puts "Your new recipe has been added."
   end
 end

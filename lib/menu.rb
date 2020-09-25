@@ -25,8 +25,9 @@ class Menu
     puts ''
     puts 'What would you like to do?'
     puts '1. view recipes'
-    puts '1. add recipe'
-    puts '2. save and exit'
+    puts '2. add recipe'
+    puts '3. search recipes by ingredient'
+    puts '4. save and exit'
     gets.chomp.to_i
   end
 
@@ -38,6 +39,8 @@ class Menu
       Recipe.get_new_recipe
       puts 'Two'
     when 3
+      puts "searching"
+    when 4
       puts 'Thanks for visiting'
       exit
     else
