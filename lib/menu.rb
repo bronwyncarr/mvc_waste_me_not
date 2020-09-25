@@ -11,8 +11,12 @@ class Menu
       "Odd bits of leftovers?",
       "You're one step away from reducing your waste....",
       "...and having a delicious meal!",
-      padding: 3, align: :center, border: :thick
-      )
+      padding: 2, align: :center, border: {
+        type: :thick,
+        left: false,
+        right: false,
+      },
+      width: TTY::Screen.width)
     print box
     
   end
