@@ -9,4 +9,4 @@ class Recipe
   end
 end
 
-pp Recipe.new("id", "name", "description", "ingredients")
+pp Recipe.new('id', 'name', 'description', 'ingredients')
