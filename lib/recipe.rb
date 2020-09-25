@@ -7,4 +7,8 @@ class Recipe
     @description = description
     @ingredients = ingredients
   end
+
+  def self.get_new_recipe
+    p 'hello'
+  end
 end
