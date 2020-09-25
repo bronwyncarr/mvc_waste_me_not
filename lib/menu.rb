@@ -39,7 +39,7 @@ class Menu
       Recipe.get_new_recipe
       puts 'Two'
     when 3
-      puts "searching"
+      puts 'searching'
     when 4
       puts 'Thanks for visiting'
       exit
