@@ -1,34 +1,47 @@
 class Menu
-  def heading
-    puts 'Welcome to Waste - me - not'
-    puts 'Did you know millions of tones of food is waster yeach year?'
-    puts "...You're just one stop away from reducing that and making some delicious meals"
-    puts 'what would you like to do?'
-    print "> "
+  def initialize
+    @recipes = []
+  end
 
-    puts '1. view recipes'
-    puts '2. save and exit'
+  def heading
+    box = TTY::Box.frame(
+      "Welcome to WASTE-ME-NOT",
+      "",
+      "Have you got some random veggies in your fridge?",
+      "Odd bits of leftovers?",
+      "You're one step away from reducing your waste....",
+      "...and having a delicious meal!",
+      padding: 3, align: :center, border: :thick
+      )
+    print box
+    
   end
 
   def user_input
+    puts ''
+    puts 'What would you like to do?'
+    puts '1. view recipes'
+    puts '1. add recipe'
+    puts '2. save and exit'
     gets.chomp.to_i
   end
 
-  def options
+  def start
     heading
     loop do
       case user_input
       when 1
-        puts 'you chose one'
+        p @recipes
       when 2
+        recipe = Recipe.new('id', 'name', 'description', 'ingredients')
+        @recipes << recipe
+        puts 'Two'
+      when 3
         puts 'Thanks for visiting'
         exit
       else
-        puts 'Please enter 1 or 2'
+        puts 'Please enter 1 , 2, or 3'
       end
     end
   end
 end
-
-new_class = Menu.new
-new_class.options

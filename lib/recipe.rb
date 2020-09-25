@@ -8,5 +8,3 @@ class Recipe
     @ingredients = ingredients
   end
 end
-
-pp Recipe.new('id', 'name', 'description', 'ingredients')
