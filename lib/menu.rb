@@ -1,4 +1,3 @@
-
 require_relative 'recipe'
 
 class Menu
@@ -38,10 +37,10 @@ class Menu
 
   def terminal_table
     if @recipes == []
-      puts "no recipes to display"
+      puts 'no recipes to display'
     else
-      table = TTY::Table.new([:id, :name, :desciption, :ingredients], @recipes)
-    puts table.render(:ascii, alignment: [:center], width: TTY::Screen.width)
+      table = TTY::Table.new(%i[id name desciption ingredients], @recipes)
+      puts table.render(:ascii, alignment: [:center], width: TTY::Screen.width)
     end
   end
 

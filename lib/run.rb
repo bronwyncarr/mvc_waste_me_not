@@ -6,6 +6,5 @@ require_relative 'recipe'
 require_relative 'menu'
 require_relative 'constants'
 
-
 app = Menu.new
 app.start

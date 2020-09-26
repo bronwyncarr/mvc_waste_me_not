@@ -1,7 +1,7 @@
 class Recipe
   def make_new_recipe
     recipe = []
-    inputs = [:id, :name, :desciption, :ingredients]
+    inputs = %i[id name desciption ingredients]
     puts 'Create a new recipe'
     puts 'Please enter the following information.'
     inputs.each do |item|
