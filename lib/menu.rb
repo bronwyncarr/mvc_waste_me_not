@@ -26,13 +26,14 @@ class Menu
   end
 
   def menu_options
-    puts ''
-    puts 'What would you like to do?'
-    puts '1. view recipes'
-    puts '2. add recipe'
-    puts '3. search recipes by ingredient'
-    puts '4. save and exit'
-    gets.chomp.to_i
+    prompt = TTY::Prompt.new
+    prompt.select("What would you like to do") do |menu|
+      menu.choice "View all recipes", 1
+      menu.choice "Add a new recipe", 2
+      menu.choice "Search recipe by ingredient", 3
+      menu.choice "View all ingredients", 4
+      menu.choice "Save and Exit", 5
+    end
   end
 
   def terminal_table
@@ -49,13 +50,25 @@ class Menu
     when 1
       terminal_table
     when 2
+      
       new_recipe = Recipe.new
       new_new = new_recipe.make_new_recipe
       new_new.unshift(@recipes.length + 1)
       @recipes << new_new
     when 3
-      puts 'searching'
+      # list = []
+      puts "\nWhat would you like to test?"
+      ing = gets.chomp
+      @recipes.each do |item|
+        p item
+        if item[3].include?(ing)
+         puts item[1]
+        end
+      end
+      # puts " Great news! #{ing} appears in #{list}"
     when 4
+      # @recipes.include?
+    when 5
       puts 'Thanks for visiting'
       exit
     else
