@@ -37,10 +37,10 @@ class Menu
 
   def terminal_table
     if @recipes == []
-      puts 'no recipes to display'
+      puts 'No recipes to display'
     else
       table = TTY::Table.new(%i[id name desciption ingredients], @recipes)
-      puts table.render(:ascii, alignment: [:center], width: TTY::Screen.width)
+      puts table.render(:ascii, alignment: [:center], resize: true)
     end
   end
 
