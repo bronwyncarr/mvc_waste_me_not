@@ -1,19 +1,14 @@
 class Recipe
-  attr_reader :id, :name, :description, :ingredients
-
-  # INPUTS = %i[id name desciption ingredients].freeze
-
-  def initialize(recipe)
-    @id = recipe[0]
-    @name = recipe[1]
-    @description = recipe[2]
-    @ingredients = recipe[3]
+  def make_new_recipe
+    recipe = []
+    inputs = [:id, :name, :desciption, :ingredients]
+    puts 'Create a new recipe'
+    puts 'Please enter the following information.'
+    inputs.each do |item|
+      puts "#{item}: "
+      recipe << gets.strip
+    end
+    recipe[3] = recipe[3].split(',')
+    recipe
   end
-
- 
-
-  # def display
-  #   puts "#{id} #{name} #{description} #{ingredients}"
-  # end
-
 end

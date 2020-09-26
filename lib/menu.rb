@@ -1,3 +1,6 @@
+
+require_relative 'recipe'
+
 class Menu
   def initialize
     @recipes = []
@@ -32,26 +35,23 @@ class Menu
     puts '4. save and exit'
     gets.chomp.to_i
   end
-  
-  def make_new_recipe
-    recipe = []
-    inputs = [:id, :name, :desciption, :ingredients]
-    puts 'Create a new recipe'
-    puts 'Please enter the following information.'
-    inputs.each do |item|
-      puts "#{item}: "
-      recipe << gets.strip
+
+  def terminal_table
+    if @recipes == []
+      puts "no recipes to display"
+    else
+      table = TTY::Table.new([:id, :name, :desciption, :ingredients], @recipes)
+    puts table.render(:ascii, alignment: [:center], width: TTY::Screen.width)
     end
-    recipe
   end
 
   def menu_actions
     case menu_options
     when 1
-      puts @recipes
+      terminal_table
     when 2
-      recipe = make_new_recipe
-      @recipes << recipe
+      new_recipe = Recipe.new
+      @recipes << new_recipe.make_new_recipe
     when 3
       puts 'searching'
     when 4
