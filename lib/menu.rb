@@ -50,7 +50,9 @@ class Menu
       terminal_table
     when 2
       new_recipe = Recipe.new
-      @recipes << new_recipe.make_new_recipe
+      new_new = new_recipe.make_new_recipe
+      new_new.unshift(@recipes.length + 1)
+      @recipes << new_new
     when 3
       puts 'searching'
     when 4
