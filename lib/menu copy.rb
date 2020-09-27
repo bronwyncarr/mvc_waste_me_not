@@ -2,7 +2,7 @@ require_relative 'recipe'
 
 class Menu
   def initialize
-    @recipe_list = Library.new
+    @recipes = []
   end
 
   def heading
@@ -27,7 +27,7 @@ class Menu
 
   def menu_options
     prompt = TTY::Prompt.new
-    prompt.select('What would you like to do', cycle: true) do |menu|
+    prompt.select('What would you like to do') do |menu|
       menu.choice 'View all recipes', 1
       menu.choice 'Add a new recipe', 2
       menu.choice 'Search recipe by ingredient', 3
@@ -36,18 +36,36 @@ class Menu
     end
   end
 
+  def terminal_table
+    if @recipes == []
+      puts 'No recipes to display'
+    else
+      table = TTY::Table.new(%i[Id Name Desciption Ingredients], @recipes)
+      puts table.render(:ascii, alignment: [:center], resize: true)
+    end
+  end
+
   def menu_actions
     case menu_options
     when 1
-      @recipe_list.read_recipes
+      terminal_table
     when 2
-      @recipe_list.create_recipes
+      new_recipe = Recipe.new
+      new_new = new_recipe.make_new_recipe
+      new_new.unshift(@recipes.length + 1)
+      @recipes << new_new
     when 3
-      @recipe_list.search_recipes
+      list = []
+      puts "\nWhat would you like to test?"
+      ing = gets.chomp
+      @recipes.each do |item|
+        list << item[1] if item[3].include?(ing)
+      end
+      # puts list
+      puts " Great news! #{ing.capitalize} appears in #{list.join(', ')}"
     when 4
       # @recipes.include?
     when 5
-      @recipe_list.save_recipes
       puts 'Thanks for visiting'
       exit
     else
