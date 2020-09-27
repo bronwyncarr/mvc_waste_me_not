@@ -29,9 +29,9 @@ class Library
   end
 
   def get_ingredient
-    ing_list = @recipes.map {|item| item[2]}.flatten.uniq
+    ing_list = @recipes.map {|item| item[2]}.flatten.uniq.sort
     prompt = TTY::Prompt.new
-    @tester = prompt.multi_select("Select ingredient?", ing_list)
+    @tester = prompt.multi_select("Select ingredient?", ing_list,  cycle: true, per_page: 12)
   end
     
   def search_any_recipes
@@ -41,8 +41,19 @@ class Library
         list << item[0] if item[2].include?(ing)
       end
     end
-    puts "Great news! #{@tester.join(", ")} occur in #{list.join(", ")}"
+    puts "Great news! #{@tester.join(", ")} occur in #{list.uniq.join(", ")}"
   end
+
+  def search_all_recipes
+    # @recipes.each do |item|
+    #   if @tester.difference(item[2]) ==[]
+    #   end
+    # end
+
+    # puts "#{@tester}"
+    # puts "#{list_a}"
+  end
+
 
   def search_recipes
     get_ingredient
@@ -53,11 +64,11 @@ class Library
     else
       puts "You selected more than one ingredient."
       prompt = TTY::Prompt.new
-      all_or_any = prompt.select("Would you like to see recipes that contain all the ingredients or any combination?", %w(All Any))
+      all_or_any = prompt.select("Would you like to see recipes that contain all the ingredients or any combination?", %w(Any All))
       if all_or_any == "Any"
         search_any_recipes
       else
-        puts "any"
+        search_all_recipes
       end
     end 
   end
