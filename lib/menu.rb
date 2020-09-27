@@ -27,7 +27,7 @@ class Menu
 
   def menu_options
     prompt = TTY::Prompt.new
-    prompt.select('What would you like to do') do |menu|
+    prompt.select(('What would you like to do'), cycle: true) do |menu|
       menu.choice 'View all recipes', 1
       menu.choice 'Add a new recipe', 2
       menu.choice 'Search recipe by ingredient', 3
