@@ -2,6 +2,6 @@
 #   # INPUTS = %i[name desciption ingredients]
 # end
 
-test = ["onions", "carrots"].difference(["onions", "carrots", "ham", "zuc"])
+test = %w[onions carrots].difference(%w[onions carrots ham zuc])
 p test
 nil
