@@ -1,22 +1,26 @@
 [
-  {
-    "name": "spag bol",
-    "description":"",
-    "ingredients": ["pork mince", "onions", "carrots", "pasta"]
-  },
-  {
-    "name": "dumplings",
-    "description":"",
-    "ingredients": ["dumpling wrapper", "pork mince", "cabbage", "spring onions"]
-  },
-  {
-    "name": "fritatta",
-    "description":"",
-    "ingredients": ["eggs", "onion", "spring onions", "capsicum"]
-  },
-  {
-    "name": "burritos",
-    "description":"",
-    "ingredients": ["tortillas", "onions", "capsicum", "corn"]
-  }
+  ["fritatta",
+    "Meat-free",
+    ["eggs", "onions", "capsicum", "cheese", "spinach"]
+  ],
+
+  ["spag bol",
+    "Family Favourite",
+    ["pork mince", "onions", "carrots", "pasta"]
+  ],
+  
+  ["Burritos",
+    "Freezer friendly",
+    ["wraps", "onions", "carrots", "cheese", "mince"]
+  ],
+  
+  ["Dumplings",
+    "Banquet",
+    ["pork mince", "cabbage", "onions", "wontons"]
+  ],
+  
+  ["Risotto",
+    "Super creamy",
+    ["rice", "onions", "cheese", "stock"]
+  ]
 ]

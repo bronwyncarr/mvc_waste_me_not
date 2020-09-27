@@ -1,25 +1,24 @@
 require 'json'
-require_relative 'recipe'
 
 class Library
   attr_accessor :recipes
   
   def initialize
-    @recipes = []
+    returned_data = File.read("../public/data.json")
+    @recipes = JSON.parse(returned_data)
   end
+
 
   def create_recipes
     new_recipe = Recipe.new
-    new_new = new_recipe.make_new_recipe
-    new_new.unshift(@recipes.length + 1)
-    @recipes << new_new
+    @recipes << new_recipe.make_new_recipe
   end
 
   def read_recipes
     if @recipes == []
       puts 'No recipes to display'
     else
-      table = TTY::Table.new(%i[Id Name Desciption Ingredients], @recipes)
+      table = TTY::Table.new(%i[Name Desciption Ingredients], @recipes)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
   end
@@ -29,10 +28,8 @@ class Library
     puts "\nWhat would you like to test?"
     ing = gets.chomp
     @recipes.each do |item|
-      puts "#{item} first"
-    list << item[1] if item[3].include?(ing)
+    list << item[0] if item[2].include?(ing)
     end
-    puts "#{list} second"
     puts "Great news! #{ing.capitalize} appears in #{list.join(', ')}"
   end
 end
