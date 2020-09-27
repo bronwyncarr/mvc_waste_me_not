@@ -2,12 +2,17 @@ require 'json'
 
 class Library
   attr_accessor :recipes
-  
+
   def initialize
-    returned_data = File.read("../public/data.json")
+    @path = '../public/data.json'
+    returned_data = File.read(@path)
     @recipes = JSON.parse(returned_data)
+    
   end
 
+  def save_recipes
+    File.write(@path, @recipes)
+  end
 
   def create_recipes
     new_recipe = Recipe.new
@@ -28,26 +33,11 @@ class Library
     puts "\nWhat would you like to test?"
     ing = gets.chomp
     @recipes.each do |item|
-    list << item[0] if item[2].include?(ing)
+      list << item[0] if item[2].include?(ing)
     end
     puts "Great news! #{ing.capitalize} appears in #{list.join(', ')}"
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # # read
 

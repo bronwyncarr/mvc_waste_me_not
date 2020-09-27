@@ -47,6 +47,7 @@ class Menu
     when 4
       # @recipes.include?
     when 5
+      @recipe_list.save_recipes
       puts 'Thanks for visiting'
       exit
     else

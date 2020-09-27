@@ -1,18 +1,16 @@
 begin
-  puts "enter a number less than 100"
+  puts 'enter a number less than 100'
   number = gets.chomp
-  if number > 100
-    raise("Custom range error")
-  end
-rescue => exception
+  raise('Custom range error') if number > 100
+rescue StandardError => e
   p error # custom range error
-  puts "in rescue"
+  puts 'in rescue'
   retry
 end
 
-puts "thanks for a number"
+puts 'thanks for a number'
 
-# can explicitly target type of error with 
+# can explicitly target type of error with
 # rescue Argument = exception
 
 # can leave out if raise and just rescue any error
@@ -26,11 +24,11 @@ puts "thanks for a number"
 
 # can use type for validating
 begin
-  puts "enter a number less than 100"
+  puts 'enter a number less than 100'
   number = Integer(gets.chomp)
   number.to_i + 10
-rescue => exception
+rescue StandardError => e
   p error # custom range error
-  puts "in rescue"
+  puts 'in rescue'
   retry
 end
