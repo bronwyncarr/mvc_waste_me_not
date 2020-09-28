@@ -1,5 +1,4 @@
 class Ingredient
-
   include Constants
 
   def initialize
@@ -11,7 +10,7 @@ class Ingredient
   def list_all_ingredients
     @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
-  
+
   def find_ingredient
     list_all_ingredients
     @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
@@ -21,9 +20,7 @@ class Ingredient
     any_list = []
     @tester.each do |ing|
       @recipes.each do |item|
-        if item[2].include?(ing)
-        any_list << item[0] 
-        end
+        any_list << item[0] if item[2].include?(ing)
       end
     end
     any_list
@@ -32,30 +29,26 @@ class Ingredient
   def search_all_recipes
     all_list = []
     @recipes.each do |item|
-      if @tester.intersection(item[2]) == @tester
-        all_list << (item[0])
-      end
+      all_list << (item[0]) if @tester.intersection(item[2]) == @tester
     end
     all_list
   end
 
-def display_as_table(list)
-  if list.empty?
-    puts "Sorry, none of your recipes include all those ingreditents."
-  else
-    list_table = []
-    puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"     
+  def display_as_table(list)
+    if list.empty?
+      puts 'Sorry, none of your recipes include all those ingreditents.'
+    else
+      list_table = []
+      puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"
       list.each do |ing|
         @recipes.each do |item|
-          if item[0].include?(ing)
-          list_table << item 
-          end
+          list_table << item if item[0].include?(ing)
         end
       end
       table = TTY::Table.new(%i[Name Desciption Ingredients], list_table)
       puts table.render(:ascii, alignment: [:center], resize: true)
+    end
   end
-end
 
   def search_recipes
     find_ingredient

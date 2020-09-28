@@ -1,8 +1,7 @@
 module Constants
- PATH = '../public/data.json'
- PROMPT = TTY::Prompt.new
+  PATH = '../public/data.json'.freeze
+  PROMPT = TTY::Prompt.new
 end
-
 
 # # write
 # new_array = ["afsd", "fsad", ["fsad", "dfas"]]

@@ -29,7 +29,7 @@ class Library
   end
 
   def delete_recipes
-    puts "These are your recipes."
+    puts 'These are your recipes.'
     read_recipes
     puts "What's the title of the one you would like to delete?"
     to_be_deleted = gets.strip
