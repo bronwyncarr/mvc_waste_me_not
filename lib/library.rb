@@ -6,12 +6,12 @@ class Library
   include Constants
 
   def initialize
-    returned_data = File.read(PATH)
+    returned_data = File.read(RECIPE_DATABASE)
     @recipes = JSON.parse(returned_data)
   end
 
   def save_recipes
-    File.write(PATH, @recipes)
+    File.write(RECIPE_DATABASE, @recipes)
   end
 
   def create_recipes

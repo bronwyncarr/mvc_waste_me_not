@@ -1,5 +1,7 @@
 module Constants
-  PATH = '../public/data.json'.freeze
+  path = File.dirname(__FILE__).split("/")
+  path.pop
+  RECIPE_DATABASE = "#{path.join("/")}/public/data.json"
   PROMPT = TTY::Prompt.new
 end
 

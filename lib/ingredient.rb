@@ -2,7 +2,7 @@ class Ingredient
   include Constants
 
   def initialize
-    returned_data = File.read(PATH)
+    returned_data = File.read(RECIPE_DATABASE)
     @recipes = JSON.parse(returned_data)
     @tester = []
   end
@@ -23,7 +23,7 @@ class Ingredient
         any_list << item[0] if item[2].include?(ing)
       end
     end
-    any_list
+    any_list.uniq
   end
 
   def search_all_recipes
@@ -55,7 +55,7 @@ class Ingredient
     if @tester.empty?
       puts 'You selected no ingredients. Remember to press space to select'
     elsif @tester.length == 1
-      search_any_recipes
+      display_as_table(search_any_recipes)
     else
       puts 'You selected more than one ingredient.'
       all_or_any = PROMPT.select('Would you like to see recipes that contain all the ingredients or any combination?', %w[Any All])
