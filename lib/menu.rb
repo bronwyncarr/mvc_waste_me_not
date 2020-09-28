@@ -50,7 +50,7 @@ class Menu
       search.search_recipes
     when 5
       search = Ingredient.new
-      puts "There's delicious things you might just have in your fridge like:"
+      puts "The delicious things you might just have in your fridge like:"
       puts search.list_all_ingredients
     when 6
       puts 'Thanks for visiting'
