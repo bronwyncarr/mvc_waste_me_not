@@ -3,15 +3,15 @@ require 'json'
 class Library
   attr_accessor :recipes
 
+  include Constants
+
   def initialize
-    @path = '../public/data.json'
-    returned_data = File.read(@path)
+    returned_data = File.read(RECIPE_DATABASE)
     @recipes = JSON.parse(returned_data)
-    @tester = []
   end
 
   def save_recipes
-    File.write(@path, @recipes)
+    File.write(RECIPE_DATABASE, @recipes)
   end
 
   def create_recipes
@@ -28,79 +28,17 @@ class Library
     end
   end
 
-  def get_ingredient
-    ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
-    prompt = TTY::Prompt.new
-    @tester = prompt.multi_select('Select ingredient?', ing_list, cycle: true, per_page: 12)
-  end
-
-  def search_any_recipes
-    any_list = []
-    @tester.each do |ing|
-      @recipes.each do |item|
-        if item[2].include?(ing)
-        any_list << item[0] 
-        end
-      end
-    end
-    puts "Great news! #{@tester.join(', ')} occur in: #{any_list.uniq.join(', ')}" 
-  end
-
-  def search_all_recipes
-    all_list = []
+  def delete_recipes
+    puts 'These are your recipes.'
+    read_recipes
+    puts "What's the title of the one you would like to delete?"
+    to_be_deleted = gets.strip
     @recipes.each do |item|
-      if @tester.intersection(item[2]) == @tester
-        all_list << (item[0])
+      if to_be_deleted == item[0]
+        @recipes.delete(item)
+        break
       end
     end
-    puts "Great news! #{@tester.join(', ')} occur in #{all_list.join(', ')}" 
-  end
-
-  def search_recipes
-    get_ingredient
-    if @tester.empty?
-      puts 'You selected no ingredients. Remember to press space to select'
-    elsif @tester.length == 1
-      search_any_recipes
-    else
-      puts 'You selected more than one ingredient.'
-      prompt = TTY::Prompt.new
-      all_or_any = prompt.select('Would you like to see recipes that contain all the ingredients or any combination?', %w[Any All])
-      if all_or_any == 'Any'
-        search_any_recipes
-      else
-        search_all_recipes
-      end
-    end
+    save_recipes
   end
 end
-
-# @recipes.each do |item|
-#   list << item[0] if item[2].include?(ing)
-# end
-# end
-#   puts "Great news! #{ing.capitalize} appears in #{list.join(', ')}"
-# end
-
-# def search_any_recipes
-# list = []
-# puts "\nWhat would you like to test?"
-# ing = gets.chomp
-# @recipes.each do |item|
-#   list << item[0] if item[2].include?(ing)
-# end
-# puts "Great news! #{ing.capitalize} appears in #{list.join(', ')}"
-# end
-# # read
-
-# returned_data = File.read('data.json')
-# data = JSON.parse(returned_data)
-
-# # write
-
-# new_array = ["afsd", "fsad", ["fsad", "dfas"]]
-# data << new_array
-
-# # use either
-# File.write("data.json", data.to_json) # or
-# File.write("data.json", JSON.pretty_generate(data)) # prints prety
