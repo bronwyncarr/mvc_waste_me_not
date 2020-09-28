@@ -35,23 +35,25 @@ class Library
   end
 
   def search_any_recipes
-    list = []
+    any_list = []
     @tester.each do |ing|
       @recipes.each do |item|
-        list << item[0] if item[2].include?(ing)
+        if item[2].include?(ing)
+        any_list << item[0] 
+        end
       end
     end
-    puts "Great news! #{@tester.join(', ')} occur in #{list.uniq.join(', ')}"
+    puts "Great news! #{@tester.join(', ')} occur in: #{any_list.uniq.join(', ')}" 
   end
 
   def search_all_recipes
-    # @recipes.each do |item|
-    #   if @tester.difference(item[2]) ==[]
-    #   end
-    # end
-
-    # puts "#{@tester}"
-    # puts "#{list_a}"
+    all_list = []
+    @recipes.each do |item|
+      if @tester.intersection(item[2]) == @tester
+        all_list << (item[0])
+      end
+    end
+    puts "Great news! #{@tester.join(', ')} occur in #{all_list.join(', ')}" 
   end
 
   def search_recipes
@@ -59,7 +61,7 @@ class Library
     if @tester.empty?
       puts 'You selected no ingredients. Remember to press space to select'
     elsif @tester.length == 1
-      puts 'you only selected one'
+      search_any_recipes
     else
       puts 'You selected more than one ingredient.'
       prompt = TTY::Prompt.new
