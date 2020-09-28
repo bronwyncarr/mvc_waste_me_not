@@ -30,9 +30,10 @@ class Menu
     prompt.select('What would you like to do', cycle: true) do |menu|
       menu.choice 'View all recipes', 1
       menu.choice 'Add a new recipe', 2
-      menu.choice 'Search recipe by ingredient', 3
-      menu.choice 'View all ingredients', 4
-      menu.choice 'Save and Exit', 5
+      menu.choice 'Delete a recipe', 3
+      menu.choice 'Search recipe by ingredient', 4
+      menu.choice 'View all your ingredient options', 5
+      menu.choice 'Save and Exit', 6
     end
   end
 
@@ -43,15 +44,19 @@ class Menu
     when 2
       @recipe_list.create_recipes
     when 3
-      @recipe_list.search_recipes
+      @recipe_list.delete_recipes
     when 4
-      # @recipes.include?
+      search = Ingredient.new
+      search.search_recipes
     when 5
-      @recipe_list.save_recipes
+      search = Ingredient.new
+      puts "There's delicious things you might just have in your fridge like:"
+      puts search.list_all_ingredients
+    when 6
       puts 'Thanks for visiting'
       exit
     else
-      p 'Please enter 1 , 2, or 3'
+      p 'Please enter 1 to 6'
     end
   end
 
