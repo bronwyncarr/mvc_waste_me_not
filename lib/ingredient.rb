@@ -1,48 +1,76 @@
 class Ingredient
-  attr_accessor :recipes
 
-  def create_ingredient_list
-    ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
-    prompt = TTY::Prompt.new
-    @tester = prompt.multi_select('Select ingredient?', ing_list, cycle: true, per_page: 12)
+  include Constants
+
+  def initialize
+    returned_data = File.read(PATH)
+    @recipes = JSON.parse(returned_data)
+    @tester = []
+  end
+
+  def list_all_ingredients
+    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
+  end
+  
+  def find_ingredient
+    list_all_ingredients
+    @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
   end
 
   def search_any_recipes
-    list = []
+    any_list = []
     @tester.each do |ing|
       @recipes.each do |item|
-        list << item[0] if item[2].include?(ing)
+        if item[2].include?(ing)
+        any_list << item[0] 
+        end
       end
     end
-    puts "Great news! #{@tester.join(', ')} occur in #{list.uniq.join(', ')}"
+    any_list
   end
 
   def search_all_recipes
-    # @recipes.each do |item|
-    #   if @tester.difference(item[2]) ==[]
-    #   end
-    # end
-
-    # puts "#{@tester}"
-    # puts "#{list_a}"
+    all_list = []
+    @recipes.each do |item|
+      if @tester.intersection(item[2]) == @tester
+        all_list << (item[0])
+      end
+    end
+    all_list
   end
 
-  def start_search
-    create_ingredient_list
+def display_as_table(list)
+  if list.empty?
+    puts "Sorry, none of your recipes include all those ingreditents."
+  else
+    list_table = []
+    puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"     
+      list.each do |ing|
+        @recipes.each do |item|
+          if item[0].include?(ing)
+          list_table << item 
+          end
+        end
+      end
+      table = TTY::Table.new(%i[Name Desciption Ingredients], list_table)
+      puts table.render(:ascii, alignment: [:center], resize: true)
+  end
+end
+
+  def search_recipes
+    find_ingredient
     if @tester.empty?
       puts 'You selected no ingredients. Remember to press space to select'
     elsif @tester.length == 1
-      puts 'you only selected one'
+      search_any_recipes
     else
       puts 'You selected more than one ingredient.'
-      prompt = TTY::Prompt.new
-      all_or_any = prompt.select('Would you like to see recipes that contain all the ingredients or any combination?', %w[Any All])
+      all_or_any = PROMPT.select('Would you like to see recipes that contain all the ingredients or any combination?', %w[Any All])
       if all_or_any == 'Any'
-        search_any_recipes
+        display_as_table(search_any_recipes)
       else
-        search_all_recipes
+        display_as_table(search_all_recipes)
       end
     end
   end
-
 end

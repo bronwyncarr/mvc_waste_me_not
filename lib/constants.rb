@@ -1,7 +1,13 @@
-# module Constants
-#   # INPUTS = %i[name desciption ingredients]
-# end
+module Constants
+ PATH = '../public/data.json'
+ PROMPT = TTY::Prompt.new
+end
 
-test = %w[onions carrots].difference(%w[onions carrots ham zuc])
-p test
-nil
+
+# # write
+# new_array = ["afsd", "fsad", ["fsad", "dfas"]]
+# data << new_array
+
+# # use either
+# File.write("data.json", data.to_json) # or
+# File.write("data.json", JSON.pretty_generate(data)) # prints prety
