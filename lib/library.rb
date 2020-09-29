@@ -14,18 +14,14 @@ class Library
     File.write(RECIPE_DATABASE, @recipes)
   end
 
-  def create_recipes
-    new_recipe = Recipe.new
-    @recipes << new_recipe.make_new_recipe
+  def create_recipes(name, description, ingredients)
+    new_recipe = Recipe.new(name, description, ingredients)
+    @recipes << new_recipe.make_new
   end
 
   def read_recipes
-    if @recipes == []
-      puts 'No recipes to display'
-    else
       table = TTY::Table.new(TABLE_HEADING, @recipes)
-      puts table.render(:ascii, alignment: [:center], resize: true)
-    end
+      table.render(:ascii, alignment: [:center], resize: true)
   end
 
   def delete_recipes

@@ -39,17 +39,40 @@ class Menu
     end
   end
 
+  def one
+    clear
+    heading(VIEW)
+    if @recipe_list.recipes.empty?
+      puts "There's no recipes in your database yet. Let's add some!"
+    else
+      puts @recipe_list.read_recipes
+    end
+  end
   
+  def two
+    clear
+    heading(CREATE)
+    puts "Let's create a new recipe"
+    puts "What's the recipe name?"
+    p "> "
+    name = gets.strip.downcase
+    puts "Describe the recipe?"
+    p "> "
+    description = gets.strip.downcase
+    puts "List the ingredients, sperated by a space"
+    p "> "
+    ingredients = gets.strip.downcase
+
+    @recipe_list.create_recipes(name, description, ingredients)
+  end
+
+
   def menu_actions
     case menu_options
     when 1
-      clear
-      heading(VIEW)
-      @recipe_list.read_recipes
+      one
     when 2
-      clear
-      heading(CREATE)
-      @recipe_list.create_recipes
+      two
     when 3
       clear
       heading(DELETE)
@@ -66,6 +89,7 @@ class Menu
       puts "The delicious things you might just have in your fridge like:"
       puts search.list_all_ingredients
     when 6
+      @recipe_list.save_recipes
       puts 'Thanks for visiting'
       exit
     else
