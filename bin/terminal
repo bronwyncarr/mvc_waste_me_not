@@ -5,6 +5,8 @@ require 'tty-box'
 require 'tty-screen'
 require 'tty-table'
 require 'tty-prompt'
+require 'colorize'
+
 
 #relative files
 require_relative '../lib/constants'
