@@ -3,7 +3,7 @@ module Constants
   path.pop
   RECIPE_DATABASE = "#{path.join("/")}/public/data.json"
   PROMPT = TTY::Prompt.new
-  TABLE_HEADING = %i[Name Desciption Ingredients]
+  TABLE_HEADING = ["Name".colorize(:light_blue), "Desciption".colorize(:light_blue), "Ingredients".colorize(:light_blue)]
 end
 
 # # write
