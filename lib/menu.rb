@@ -54,13 +54,13 @@ class Menu
     # seems repetativey but easier to read with = amount of lines
     puts "What's the recipe name?"
     print "> "
-    name = gets.strip.downcase
+    name = gets.strip
     puts "Describe the recipe?"
     print "> "
-    description = gets.strip.downcase
+    description = gets.strip
     puts "List the ingredients, sperated by a space"
     print "> "
-    ingredients = gets.strip.downcase
+    ingredients = gets.strip.downcase.split
     @recipe_list.create_recipes(name, description, ingredients)
   end
 
