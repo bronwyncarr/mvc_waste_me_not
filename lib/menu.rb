@@ -11,6 +11,7 @@ class Menu
     puts "\e[2J\e[f"
   end
 
+  #header
   def heading(header)
     box = TTY::Box.frame(
       HOME, header,
@@ -26,6 +27,7 @@ class Menu
     print box
   end
 
+  #displays menu options
   def menu_options
     PROMPT.select('What would you like to do', cycle: true) do |menu|
       menu.choice 'View all recipes', 1
@@ -102,6 +104,7 @@ class Menu
     exit
   end
 
+  # actions option selected
   def menu_actions
     case menu_options
     when 1
@@ -121,6 +124,7 @@ class Menu
     end
   end
 
+  #app entry point
   def start
     heading(STARTED)
     loop do

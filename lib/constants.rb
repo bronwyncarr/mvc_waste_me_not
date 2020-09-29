@@ -1,3 +1,4 @@
+# get json data
 module Constants
   path = File.dirname(__FILE__).split('/')
   path.pop

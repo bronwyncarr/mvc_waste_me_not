@@ -6,15 +6,12 @@ class Ingredient
     @tester = []
   end
 
+  # seperated from find ingredients as used in option 4 + 5
   def list_all_ingredients
     @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
 
-  def find_ingredient
-    list_all_ingredients
-    @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
-  end
-
+  # any option
   def search_any_recipes
     any_list = []
     @tester.each do |ing|
@@ -25,6 +22,7 @@ class Ingredient
     any_list.uniq
   end
 
+  # all option
   def search_all_recipes
     all_list = []
     @recipes.each do |item|
@@ -33,6 +31,7 @@ class Ingredient
     all_list
   end
 
+  # display in table
   def display_as_table(list)
     if list.empty?
       puts 'Sorry, none of your recipes include all those ingreditents.'
@@ -49,9 +48,11 @@ class Ingredient
     end
   end
 
+  #starts the search
   def search_recipes
-    find_ingredient
-    if @tester.empty?
+    list_all_ingredients
+    @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
+     if @tester.empty?
       puts 'You selected no ingredients. Remember to press space to select'
     elsif @tester.length == 1
       display_as_table(search_any_recipes)
