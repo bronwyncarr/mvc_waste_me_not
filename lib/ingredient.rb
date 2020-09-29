@@ -2,8 +2,7 @@ class Ingredient
   include Constants
 
   def initialize
-    returned_data = File.read(RECIPE_DATABASE)
-    @recipes = JSON.parse(returned_data)
+    @recipes = JSON.parse(File.read(RECIPE_DATABASE))
     @tester = []
   end
 
