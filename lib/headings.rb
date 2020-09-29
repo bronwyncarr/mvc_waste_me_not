@@ -11,4 +11,5 @@ module Headings
   DELETE = " Delete a recipe from your database".colorize(:light_cyan)
   SEARCH = "What ingredients would you like to cook with?".colorize(:light_cyan)
   SHOW = "All the ingredients that appear in your recipes".colorize(:light_cyan)
+  EXIT = "Thanks for visiting!".colorize(:light_red)
 end
