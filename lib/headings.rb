@@ -7,7 +7,7 @@ module Headings
   HOME = 'WASTE-ME-NOT!'.colorize(:light_blue)
   STARTED = "Let's get started \n FUNFACT".colorize(:light_cyan)
   VIEW = 'Your recipe database so far'.colorize(:light_cyan)
-  CREATE = 'Creat a new recipe'.colorize(:light_cyan)
+  CREATE = 'Create a new recipe'.colorize(:light_cyan)
   DELETE = ' Delete a recipe from your database'.colorize(:light_cyan)
   SEARCH = 'What ingredients would you like to cook with?'.colorize(:light_cyan)
   SHOW = 'All the ingredients that appear in your recipes'.colorize(:light_cyan)
