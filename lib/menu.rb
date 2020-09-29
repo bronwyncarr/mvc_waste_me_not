@@ -14,7 +14,7 @@ class Menu
 
   def heading(header)
     box = TTY::Box.frame(
-      header,
+      HOME, header,
       padding: 1,
       align: :center,
       width: TTY::Screen.width,
@@ -74,7 +74,7 @@ class Menu
   end
 
   def start
-    heading(HOME)
+    heading(STARTED)
     loop do
       menu_actions
     end

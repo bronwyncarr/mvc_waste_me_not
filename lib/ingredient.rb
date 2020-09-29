@@ -45,7 +45,7 @@ class Ingredient
           list_table << item if item[0].include?(ing)
         end
       end
-      table = TTY::Table.new(%i[Name Desciption Ingredients], list_table)
+      table = TTY::Table.new(TABLE_HEADING, list_table)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
   end

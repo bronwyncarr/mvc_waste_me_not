@@ -23,7 +23,7 @@ class Library
     if @recipes == []
       puts 'No recipes to display'
     else
-      table = TTY::Table.new(%i[Name Desciption Ingredients], @recipes)
+      table = TTY::Table.new(TABLE_HEADING, @recipes)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
   end
