@@ -16,7 +16,6 @@ class Library
   def create_recipes(name, description, ingredients)
     new_recipe = [name, description, ingredients]
     @recipes << new_recipe
-
   end
 
   def read_recipes
@@ -24,17 +23,16 @@ class Library
       table.render(:ascii, alignment: [:center], resize: true)
   end
 
-  def delete_recipes
-    puts 'These are your recipes.'
-    read_recipes
-    puts "What's the title of the one you would like to delete?"
-    to_be_deleted = gets.strip
+  def delete_recipes(to_be_deleted)
+    @was_it_there = false
     @recipes.each do |item|
       if to_be_deleted == item[0]
-        @recipes.delete(item)
+        @was_it_there = true
+        @recipes.delete(item) 
+        save_recipes
         break
       end
     end
-    save_recipes
+    @was_it_there
   end
 end

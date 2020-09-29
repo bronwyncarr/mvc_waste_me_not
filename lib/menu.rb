@@ -1,5 +1,3 @@
-require_relative 'recipe'
-
 class Menu
   include Headings
 
@@ -66,6 +64,29 @@ class Menu
     @recipe_list.create_recipes(name, description, ingredients)
   end
 
+  def three
+    clear
+    heading(DELETE)
+    puts "These are your recipes:"
+    puts @recipe_list.read_recipes
+    puts "What's the title of the one you would like to delete?"
+    print "> "
+    to_be_deleted = gets.strip
+    prompt = TTY::Prompt.new
+    are_you_sure = prompt.yes?("Are you sure you want to delete") 
+      if are_you_sure
+        puts @recipe_list.delete_recipes(to_be_deleted) ? "Recipe #{to_be_deleted} has been deleted" : "No matches in your current database"
+      else
+        puts "That's ok, nothing was deleted"
+      end
+    end
+
+  def four
+    clear
+    heading(SEARCH)
+    search = Ingredient.new
+    search.search_recipes
+  end
 
   def menu_actions
     case menu_options
@@ -74,14 +95,9 @@ class Menu
     when 2
       two
     when 3
-      clear
-      heading(DELETE)
-      @recipe_list.delete_recipes
+      three
     when 4
-      clear
-      heading(SEARCH)
-      search = Ingredient.new
-      search.search_recipes
+      four
     when 5
       clear
       heading(SHOW)
