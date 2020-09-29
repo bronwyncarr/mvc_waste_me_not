@@ -1,19 +1,21 @@
 require_relative 'recipe'
 
 class Menu
+  include Headings
+
   def initialize
     @recipe_list = Library.new
   end
 
-  def heading
+  # clears the screen
+  def clear
+    puts "\e[2J\e[f"
+  end
+
+  def heading(header)
     box = TTY::Box.frame(
-      'Welcome to WASTE-ME-NOT',
-      '',
-      'Have you got some random veggies in your fridge?',
-      'Odd bits of leftovers?',
-      "You're one step away from reducing your waste....",
-      '...and having a delicious meal!',
-      padding: 2,
+      header,
+      padding: 1,
       align: :center,
       width: TTY::Screen.width,
       border: {
@@ -37,18 +39,29 @@ class Menu
     end
   end
 
+  
   def menu_actions
     case menu_options
     when 1
+      clear
+      heading(VIEW)
       @recipe_list.read_recipes
     when 2
+      clear
+      heading(CREATE)
       @recipe_list.create_recipes
     when 3
+      clear
+      heading(DELETE)
       @recipe_list.delete_recipes
     when 4
+      clear
+      heading(SEARCH)
       search = Ingredient.new
       search.search_recipes
     when 5
+      clear
+      heading(SHOW)
       search = Ingredient.new
       puts "The delicious things you might just have in your fridge like:"
       puts search.list_all_ingredients
@@ -61,9 +74,10 @@ class Menu
   end
 
   def start
-    heading
+    heading(HOME)
     loop do
       menu_actions
     end
   end
 end
+

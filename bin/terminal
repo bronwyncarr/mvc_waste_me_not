@@ -8,6 +8,7 @@ require 'tty-prompt'
 
 #relative files
 require_relative '../lib/constants'
+require_relative '../lib/headings'
 require_relative '../lib/ingredient'
 require_relative '../lib/library'
 require_relative '../lib/recipe'
