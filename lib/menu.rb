@@ -105,8 +105,9 @@ class Menu
       puts "The delicious things you might just have in your fridge like:"
       puts search.list_all_ingredients
     when 6
+      clear
+      heading(EXIT)
       @recipe_list.save_recipes
-      puts 'Thanks for visiting'
       exit
     else
       p 'Please enter 1 to 6'
