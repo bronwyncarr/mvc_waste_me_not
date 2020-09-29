@@ -1,35 +1,33 @@
 #!/usr/bin/env ruby
 
-#gems
+# gems
 require 'tty-box'
 require 'tty-screen'
 require 'tty-table'
 require 'tty-prompt'
 require 'colorize'
 
-
-#relative files
+# relative files
 require_relative '../lib/constants'
 require_relative '../lib/headings'
 require_relative '../lib/ingredient'
 require_relative '../lib/library'
 require_relative '../lib/menu'
 
-
 app = Menu.new
 app.start
 
-def help_docs 
-  puts "-l and --list"
-  puts "shortcut to get to the list view of bookmarks"
+def help_docs
+  puts '-l and --list'
+  puts 'shortcut to get to the list view of bookmarks'
 end
 
-if ARGV[0] == "-h"
+if ARGV[0] == '-h'
   help_docs
   exit
 end
 
-if ARGV[0] == "-l" || ARGV[0] == "--list"
+if ARGV[0] == '-l' || ARGV[0] == '--list'
   app.menu_actions
 else
   app.start
