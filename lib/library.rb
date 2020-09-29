@@ -6,8 +6,7 @@ class Library
   include Constants
 
   def initialize
-    returned_data = File.read(RECIPE_DATABASE)
-    @recipes = JSON.parse(returned_data)
+    @recipes = JSON.parse(File.read(RECIPE_DATABASE))
   end
 
   def save_recipes
@@ -15,8 +14,9 @@ class Library
   end
 
   def create_recipes(name, description, ingredients)
-    new_recipe = Recipe.new(name, description, ingredients)
-    @recipes << new_recipe.make_new
+    new_recipe = [name, description, ingredients]
+    @recipes << new_recipe
+
   end
 
   def read_recipes

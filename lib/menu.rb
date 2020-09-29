@@ -53,16 +53,16 @@ class Menu
     clear
     heading(CREATE)
     puts "Let's create a new recipe"
+    # seems repetativey but easier to read with = amount of lines
     puts "What's the recipe name?"
-    p "> "
+    print "> "
     name = gets.strip.downcase
     puts "Describe the recipe?"
-    p "> "
+    print "> "
     description = gets.strip.downcase
     puts "List the ingredients, sperated by a space"
-    p "> "
+    print "> "
     ingredients = gets.strip.downcase
-
     @recipe_list.create_recipes(name, description, ingredients)
   end
 
