@@ -48,13 +48,23 @@ class Ingredient
     end
   end
 
-  #starts the search
+  # user_search_input
+  def user_search_input
+    begin
+      list_all_ingredients
+      @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
+      raise('Ingredient required') if @tester.empty?
+    rescue StandardError => e
+      puts 'Please select an ingredient using the space bar'
+      retry
+    end
+     @tester
+  end
+
+  # starts the search
   def search_recipes
-    list_all_ingredients
-    @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
-     if @tester.empty?
-      puts 'You selected no ingredients. Remember to press space to select'
-    elsif @tester.length == 1
+    user_search_input
+    if @tester.length == 1
       display_as_table(search_any_recipes)
     else
       puts 'You selected more than one ingredient.'
