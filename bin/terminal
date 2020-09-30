@@ -15,11 +15,10 @@ require_relative '../lib/library'
 require_relative '../lib/menu'
 
 app = Menu.new
-app.start
 
 def help_docs
   puts '-l and --list'
-  puts 'shortcut to get to the list view of bookmarks'
+  puts 'shortcut to just view a list of recipes'
 end
 
 if ARGV[0] == '-h'
@@ -28,7 +27,7 @@ if ARGV[0] == '-h'
 end
 
 if ARGV[0] == '-l' || ARGV[0] == '--list'
-  app.menu_actions
+  app.one
 else
   app.start
 end
