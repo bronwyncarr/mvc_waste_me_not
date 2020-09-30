@@ -29,7 +29,7 @@ class Menu
 
   #displays menu options
   def menu_options
-    PROMPT.select('What would you like to do', cycle: true) do |menu|
+    PROMPT.select('What would you like to do:'.colorize(:light_blue), cycle: true) do |menu|
       menu.choice 'View all recipes', 1
       menu.choice 'Add a new recipe', 2
       menu.choice 'Delete a recipe', 3
@@ -53,13 +53,18 @@ class Menu
     clear
     heading(CREATE)
     puts "Let's create a new recipe"
-    # seems repetativey but easier to read with = amount of lines
-    puts "What's the recipe name?"
-    print '> '
-    name = gets.strip
+    begin
+      puts "What's the recipe name?"
+      print '> '
+      name = gets.strip.capitalize
+      raise('Name required') if name.empty?
+    rescue StandardError => e
+      puts 'Please enter a name'
+      retry
+    end
     puts 'Describe the recipe?'
     print '> '
-    description = gets.strip
+    description = gets.strip.capitalize!
     puts 'List the ingredients, sperated by a space'
     print '> '
     ingredients = gets.strip.downcase.split
@@ -73,7 +78,7 @@ class Menu
     puts @recipe_list.read_recipes
     puts "What's the title of the one you would like to delete?"
     print '> '
-    to_be_deleted = gets.strip
+    to_be_deleted = gets.strip.capitalize
     are_you_sure = PROMPT.yes?('Are you sure you want to delete')
     if are_you_sure
       puts @recipe_list.delete_recipes(to_be_deleted) ? "Recipe #{to_be_deleted} has been deleted" : 'No matches in your current database'
@@ -119,8 +124,6 @@ class Menu
       five
     when 6
       six
-    else
-      p 'Please enter 1 to 6'
     end
   end
 
