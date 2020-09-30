@@ -6,17 +6,12 @@ class Ingredient
     @tester = []
   end
 
-  # seperated from find ingredients as used in option 4 + 5
-  def list_all_ingredients
-    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
-  end
-
   # any option
   def search_any_recipes
     any_list = []
     @tester.each do |ing|
       @recipes.each do |item|
-        any_list << item[0] if item[2].include?(ing)
+        any_list << item if item[2].include?(ing)
       end
     end
     any_list.uniq
@@ -26,7 +21,7 @@ class Ingredient
   def search_all_recipes
     all_list = []
     @recipes.each do |item|
-      all_list << (item[0]) if @tester.intersection(item[2]) == @tester
+      all_list << item if @tester.intersection(item[2]) == @tester
     end
     all_list
   end
@@ -38,14 +33,14 @@ class Ingredient
     else
       list_table = []
       puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"
-      list.each do |ing|
-        @recipes.each do |item|
-          list_table << item if item[0].include?(ing)
-        end
-      end
-      table = TTY::Table.new(TABLE_HEADING, list_table)
+      table = TTY::Table.new(TABLE_HEADING, list)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
+  end
+
+  # seperated from find ingredients as used in option 4 + 5
+  def list_all_ingredients
+    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
 
   # user_search_input
