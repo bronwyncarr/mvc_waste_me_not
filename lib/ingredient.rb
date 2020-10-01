@@ -53,7 +53,7 @@ class Ingredient
       puts 'Please select an ingredient using the space bar'
       retry
     end
-     @tester
+    @tester
   end
 
   # starts the search

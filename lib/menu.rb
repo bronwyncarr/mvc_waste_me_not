@@ -11,7 +11,7 @@ class Menu
     puts "\e[2J\e[f"
   end
 
-  #header
+  # header
   def heading(header)
     box = TTY::Box.frame(
       HOME, header,
@@ -27,7 +27,7 @@ class Menu
     print box
   end
 
-  #displays menu options
+  # displays menu options
   def menu_options
     PROMPT.select('What would you like to do:'.colorize(:light_blue), cycle: true) do |menu|
       menu.choice 'View all recipes', 1
@@ -52,29 +52,27 @@ class Menu
   def two
     clear
     heading(CREATE)
+    items = []
     puts "Let's create a new recipe"
-    begin
-      puts "What's the recipe name?"
+    values = %w[name description ingredients]
+    values.each do |item|
+      puts "Please enter the recipe #{item}?"
       print '> '
-      name = gets.strip.capitalize
-      raise('Name required') if name.empty?
-    rescue StandardError => e
-      puts 'Please enter a name'
-      retry
+      begin
+        item = if item == 'ingredients'
+                 gets.strip.downcase.split
+               else
+                 gets.strip.capitalize
+               end
+        raise('Required information') if item.empty?
+      rescue StandardError => e
+        p e
+        p 'Please enter a value'
+        retry
+      end
+      items << item
     end
-    puts 'Describe the recipe?'
-    print '> '
-    description = gets.strip.capitalize!
-    begin
-      puts 'List the ingredients, sperated by a space'
-      print '> '
-      ingredients = gets.strip.downcase.split
-      raise('Ingredients required') if ingredients.empty?
-    rescue StandardError => e
-      puts 'Please enter at least ingredient and seperate then with a space.'
-      retry
-    end
-    @recipe_list.create_recipes(name, description, ingredients)
+    @recipe_list.create_recipes(items)
   end
 
   def three
@@ -133,7 +131,7 @@ class Menu
     end
   end
 
-  #app entry point
+  # app entry point
   def start
     heading(STARTED)
     loop do
