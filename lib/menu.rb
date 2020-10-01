@@ -8,7 +8,7 @@ class Menu
     @recipe_list = Library.new
   end
 
-  # clears the screen
+  # clear terminal
   def clear
     puts "\e[2J\e[f"
   end

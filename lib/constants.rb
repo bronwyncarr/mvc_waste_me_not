@@ -1,4 +1,4 @@
-# These are the other constants in the app seperated from the Heading constants. They include database and gem related constants. 
+# These are the other constants in the app seperated from the Heading constants. They include database and gem related constants.
 module Constants
   path = File.dirname(__FILE__).split('/')
   path.pop
