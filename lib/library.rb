@@ -6,39 +6,33 @@ class Library
   include Constants
 
   def initialize
-    returned_data = File.read(RECIPE_DATABASE)
-    @recipes = JSON.parse(returned_data)
+    @recipes = JSON.parse(File.read(RECIPE_DATABASE))
   end
 
   def save_recipes
     File.write(RECIPE_DATABASE, @recipes)
   end
 
-  def create_recipes
-    new_recipe = Recipe.new
-    @recipes << new_recipe.make_new_recipe
+  def create_recipes(new_recipe)
+    @recipes << new_recipe
+    save_recipes
   end
 
   def read_recipes
-    if @recipes == []
-      puts 'No recipes to display'
-    else
-      table = TTY::Table.new(%i[Name Desciption Ingredients], @recipes)
-      puts table.render(:ascii, alignment: [:center], resize: true)
-    end
+    table = TTY::Table.new(TABLE_HEADING, @recipes)
+    table.render(:ascii, alignment: [:center], resize: true)
   end
 
-  def delete_recipes
-    puts 'These are your recipes.'
-    read_recipes
-    puts "What's the title of the one you would like to delete?"
-    to_be_deleted = gets.strip
+  def delete_recipes(to_be_deleted)
+    @was_it_there = false
     @recipes.each do |item|
-      if to_be_deleted == item[0]
-        @recipes.delete(item)
-        break
-      end
+      next unless to_be_deleted == item[0]
+
+      @was_it_there = true
+      @recipes.delete(item)
+      save_recipes
+      break
     end
-    save_recipes
+    @was_it_there
   end
 end

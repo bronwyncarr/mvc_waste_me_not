@@ -2,59 +2,64 @@ class Ingredient
   include Constants
 
   def initialize
-    returned_data = File.read(RECIPE_DATABASE)
-    @recipes = JSON.parse(returned_data)
+    @recipes = JSON.parse(File.read(RECIPE_DATABASE))
     @tester = []
   end
 
-  def list_all_ingredients
-    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
-  end
-
-  def find_ingredient
-    list_all_ingredients
-    @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
-  end
-
+  # any option
   def search_any_recipes
     any_list = []
     @tester.each do |ing|
       @recipes.each do |item|
-        any_list << item[0] if item[2].include?(ing)
+        any_list << item if item[2].include?(ing)
       end
     end
     any_list.uniq
   end
 
+  # all option
   def search_all_recipes
     all_list = []
     @recipes.each do |item|
-      all_list << (item[0]) if @tester.intersection(item[2]) == @tester
+      all_list << item if @tester.intersection(item[2]) == @tester
     end
     all_list
   end
 
+  # display in table
   def display_as_table(list)
     if list.empty?
       puts 'Sorry, none of your recipes include all those ingreditents.'
     else
       list_table = []
       puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"
-      list.each do |ing|
-        @recipes.each do |item|
-          list_table << item if item[0].include?(ing)
-        end
-      end
-      table = TTY::Table.new(%i[Name Desciption Ingredients], list_table)
+      table = TTY::Table.new(TABLE_HEADING, list)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
   end
 
+  # seperated from find ingredients as used in option 4 + 5
+  def list_all_ingredients
+    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
+  end
+
+  # user_search_input
+  def user_search_input
+    begin
+      list_all_ingredients
+      @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
+      raise('Ingredient required') if @tester.empty?
+    rescue StandardError => e
+      puts 'Please select an ingredient using the space bar'
+      retry
+    end
+    @tester
+  end
+
+  # starts the search
   def search_recipes
-    find_ingredient
-    if @tester.empty?
-      puts 'You selected no ingredients. Remember to press space to select'
-    elsif @tester.length == 1
+    user_search_input
+    if @tester.length == 1
       display_as_table(search_any_recipes)
     else
       puts 'You selected more than one ingredient.'
