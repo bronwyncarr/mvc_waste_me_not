@@ -1,4 +1,4 @@
-# constants of the various headings displayed on each page
+# constants for the various headings displayed on each page
 module Headings
   WELCOME = "Welcome to WASTE-ME-NOT
     \nHave you got some random veggies in your fridge?

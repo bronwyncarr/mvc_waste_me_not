@@ -1,3 +1,5 @@
+#this class handles the search by ingredient feature of the app. 
+
 class Ingredient
   include Constants
 

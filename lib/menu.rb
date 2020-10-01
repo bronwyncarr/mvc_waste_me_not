@@ -1,3 +1,5 @@
+# This class handles the menu that is reoccuringly shown to the user. 
+
 class Menu
   include Constants
   include Headings
@@ -6,7 +8,7 @@ class Menu
     @recipe_list = Library.new
   end
 
-  # clears the screen
+  # clear terminal
   def clear
     puts "\e[2J\e[f"
   end
@@ -27,17 +29,7 @@ class Menu
     print box
   end
 
-  # displays menu options
-  def menu_options
-    PROMPT.select('What would you like to do:'.colorize(:light_blue), cycle: true) do |menu|
-      menu.choice 'View all recipes', 1
-      menu.choice 'Add a new recipe', 2
-      menu.choice 'Delete a recipe', 3
-      menu.choice 'Search recipe by ingredient', 4
-      menu.choice 'View all your ingredient options', 5
-      menu.choice 'Save and Exit', 6
-    end
-  end
+# these methods one to six handle the presentation and user input for the options in the menu. Logic to reading/writing to the databsae in handled in the library class.
 
   def one
     clear
@@ -73,6 +65,7 @@ class Menu
       items << item
     end
     @recipe_list.create_recipes(items)
+    puts "Your recipe has been added to the database."
   end
 
   def three
@@ -113,6 +106,18 @@ class Menu
     exit
   end
 
+  # displays menu options
+  def menu_options
+    PROMPT.select('What would you like to do:'.colorize(:light_blue), cycle: true) do |menu|
+      menu.choice 'View all recipes', 1
+      menu.choice 'Add a new recipe', 2
+      menu.choice 'Delete a recipe', 3
+      menu.choice 'Search recipe by ingredient', 4
+      menu.choice 'View all your ingredient options', 5
+      menu.choice 'Save and Exit', 6
+    end
+  end
+    
   # actions option selected
   def menu_actions
     case menu_options

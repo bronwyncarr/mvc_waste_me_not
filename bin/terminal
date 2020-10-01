@@ -17,17 +17,19 @@ require_relative '../lib/menu'
 app = Menu.new
 
 def help_docs
-  puts '-l and --list'
-  puts 'shortcut to just view a list of recipes'
-end
+ table = TTY::Table.new
+  table << ['SHORTCUT', 'ACTION']
+  table << ['-l and --list', 'View a list of recipes']
+  table << ['-s and --search', 'Search by ingredient']
+  puts table.render(:ascii, alignment: [:center], resize: true)
+end   
 
 if ARGV[0] == '-h'
   help_docs
-  exit
-end
-
-if ARGV[0] == '-l' || ARGV[0] == '--list'
+elsif ARGV[0] == '-l' || ARGV[0] == '--list'
   app.one
+elsif ARGV[0] == '-s' || ARGV[0] == '--search'
+  app.four
 else
   app.start
 end
