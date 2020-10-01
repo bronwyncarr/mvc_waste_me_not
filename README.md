@@ -141,7 +141,7 @@ To assist getting accurate typed in user input, error handling is used if no val
 
 Basic user options  show the user interaction based on user input.
 
-![User interaction expanded](./docs/further2.png)
+![User interaction expanded](./docs/expanded.png)
 
 ### :calendar: Implementation Plan (R9)
 
@@ -157,7 +157,7 @@ Trello board on the 27-SEPT midway through the project:
 
 Trello board on the 02-OCT towards the end of the project:
 ![Trello board towards the end of the project](./docs/02-10.png)
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXX
 TRELLO
 XXXXXXXXXXXXXXXXXXXXXXXX
 
