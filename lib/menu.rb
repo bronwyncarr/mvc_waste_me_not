@@ -65,9 +65,15 @@ class Menu
     puts 'Describe the recipe?'
     print '> '
     description = gets.strip.capitalize!
-    puts 'List the ingredients, sperated by a space'
-    print '> '
-    ingredients = gets.strip.downcase.split
+    begin
+      puts 'List the ingredients, sperated by a space'
+      print '> '
+      ingredients = gets.strip.downcase.split
+      raise('Ingredients required') if ingredients.empty?
+    rescue StandardError => e
+      puts 'Please enter at least ingredient and seperate then with a space.'
+      retry
+    end
     @recipe_list.create_recipes(name, description, ingredients)
   end
 
