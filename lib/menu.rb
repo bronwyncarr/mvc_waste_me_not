@@ -49,6 +49,9 @@ class Menu
     values = %w[name description ingredients]
     values.each do |item|
       puts "Please enter the recipe #{item}?"
+      if item == 'ingredients'
+        puts "Please seperate with a space only."
+      end
       print '> '
       begin
         item = if item == 'ingredients'
@@ -119,8 +122,8 @@ class Menu
   end
     
   # actions option selected
-  def menu_actions
-    case menu_options
+  def menu_actions(input_number)
+    case input_number
     when 1
       one
     when 2
@@ -140,7 +143,7 @@ class Menu
   def start
     heading(STARTED)
     loop do
-      menu_actions
+      menu_actions(menu_options)
     end
   end
 end

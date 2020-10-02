@@ -29,7 +29,6 @@ class Library
     @was_it_there = false
     @recipes.each do |item|
       next unless to_be_deleted == item[0]
-
       @was_it_there = true
       @recipes.delete(item)
       save_recipes
