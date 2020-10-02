@@ -49,6 +49,9 @@ class Menu
     values = %w[name description ingredients]
     values.each do |item|
       puts "Please enter the recipe #{item}?"
+      if item == 'ingredients'
+        puts "Please seperate with a space only."
+      end
       print '> '
       begin
         item = if item == 'ingredients'

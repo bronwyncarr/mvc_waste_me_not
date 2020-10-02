@@ -49,7 +49,7 @@ class Ingredient
   def user_search_input
     begin
       list_all_ingredients
-      @tester = PROMPT.multi_select('Select ingredient?', @ing_list, cycle: true, per_page: 12)
+      @tester = PROMPT.multi_select('Please select one or more ingredients?', @ing_list, cycle: true, per_page: 12)
       raise('Ingredient required') if @tester.empty?
     rescue StandardError => e
       puts 'Please select an ingredient using the space bar'
