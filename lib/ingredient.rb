@@ -1,4 +1,4 @@
-#this class handles the search by ingredient feature of the app. 
+# this class handles the search by ingredient feature of the app.
 require 'json'
 
 class Ingredient
@@ -13,7 +13,7 @@ class Ingredient
   def list_all_ingredients
     @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
-    
+
   # any option
   def search_any_recipes
     any_list = []

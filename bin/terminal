@@ -17,12 +17,12 @@ require_relative '../lib/menu'
 app = Menu.new
 
 def help_docs
- table = TTY::Table.new
-  table << ['SHORTCUT', 'ACTION']
+  table = TTY::Table.new
+  table << %w[SHORTCUT ACTION]
   table << ['-l and --list', 'View a list of recipes']
   table << ['-s and --search', 'Search by ingredient']
   puts table.render(:ascii, alignment: [:center], resize: true)
-end   
+end
 
 if ARGV[0] == '-h'
   help_docs

@@ -1,4 +1,4 @@
-# This class handles the CRUD logic of interacting with the json database. It includes a create, read, save and delete method. Presentation logic was intentionally kept seperate. 
+# This class handles the CRUD logic of interacting with the json database. It includes a create, read, save and delete method. Presentation logic was intentionally kept seperate.
 require 'json'
 
 class Library
@@ -28,6 +28,7 @@ class Library
     @was_it_there = false
     @recipes.each do |item|
       next unless to_be_deleted == item[0]
+
       @was_it_there = true
       @recipes.delete(item)
       save_recipes
