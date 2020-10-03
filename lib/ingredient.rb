@@ -9,9 +9,23 @@ class Ingredient
     @tester = []
   end
 
-  # seperated from find ingredients as used in option 4 + 5
+  # seperated as used in option 4 + 5
   def list_all_ingredients
     @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
+  end
+
+  # user_search_input
+  def user_search_input
+    begin
+      list_all_ingredients
+      @tester = PROMPT.multi_select('Please select one or more ingredients?', @ing_list, cycle: true, per_page: 12)
+      raise('Ingredient required') if @tester.empty?
+    rescue StandardError => e
+      puts e
+      puts 'Please select an ingredient using the space bar'
+      retry
+    end
+    @tester
   end
 
   # any option
@@ -39,24 +53,21 @@ class Ingredient
     if list.empty?
       puts 'Sorry, none of your recipes include all those ingreditents.'
     else
-      list_table = []
       puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"
       table = TTY::Table.new(TABLE_HEADING, list)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
   end
 
-  # user_search_input
-  def user_search_input
-    begin
-      list_all_ingredients
-      @tester = PROMPT.multi_select('Please select one or more ingredients?', @ing_list, cycle: true, per_page: 12)
-      raise('Ingredient required') if @tester.empty?
-    rescue StandardError => e
-      puts 'Please select an ingredient using the space bar'
-      retry
+  def handle_multiple
+    puts 'You selected more than one ingredient.'
+    puts 'Would you like to see recipes containing:'
+    all_or_any = PROMPT.select('ALL the ingredients or ANY combination?', %w[Any All])
+    if all_or_any == 'Any'
+      search_any_recipes
+    else
+      search_all_recipes
     end
-    @tester
   end
 
   # starts the search
@@ -65,13 +76,7 @@ class Ingredient
     if @tester.length == 1
       display_as_table(search_any_recipes)
     else
-      puts 'You selected more than one ingredient.'
-      all_or_any = PROMPT.select('Would you like to see recipes that contain all the ingredients or any combination?', %w[Any All])
-      if all_or_any == 'Any'
-        display_as_table(search_any_recipes)
-      else
-        display_as_table(search_all_recipes)
-      end
+      display_as_table(handle_multiple)
     end
   end
 end

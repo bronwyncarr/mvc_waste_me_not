@@ -8,16 +8,19 @@ require 'json'
 
 # relative files
 require_relative '../lib/constants'
-require_relative '../lib/headings'
-require_relative '../lib/ingredient'
+# require_relative '../lib/headings'
+# require_relative '../lib/ingredient'
 require_relative '../lib/library'
-require_relative '../lib/menu'
+# require_relative '../lib/menu'
 
 describe Library do
   before(:each) do
     path = File.dirname(__FILE__).split('/')
     stub_const('Constants::RECIPE_DATABASE', "#{path.join('/')}/fake_data.json".freeze)
-    fake_database = [['Fritatta', 'Meat-free', %w[eggs onions capsicum cheese spinach]], ['Spag bol', 'Family Favourite', ['pork mince', 'onions', 'carrots', 'pasta']]]
+    fake_database = [
+      ['Fritatta', 'Meat-free', %w[eggs onions capsicum cheese spinach]],
+      ['Spag bol', 'Family Favourite', ['pork mince', 'onions', 'carrots', 'pasta']]
+    ]
     File.write(Constants::RECIPE_DATABASE, JSON.pretty_generate(fake_database))
   end
 

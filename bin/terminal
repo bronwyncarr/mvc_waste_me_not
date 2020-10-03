@@ -24,11 +24,12 @@ def help_docs
   puts table.render(:ascii, alignment: [:center], resize: true)
 end
 
-if ARGV[0] == '-h'
+case ARGV[0]
+when '-h'
   help_docs
-elsif ARGV[0] == '-l' || ARGV[0] == '--list'
+when '-l', '--list'
   app.one
-elsif ARGV[0] == '-s' || ARGV[0] == '--search'
+when '-s', '--search'
   app.four
 else
   app.start

@@ -1,5 +1,16 @@
 # This class handles the menu that is reoccuringly shown to the user.
 
+# These methods one to six handle the presentation and user input for the options in the menu.
+# Logic to reading/writing to the databsae in handled in the library class.
+#
+# I considered renaming them to more meaningful names however with only six,
+# one to six was easier for me to work with. Any more or to make the project scalable
+# I would rename these.
+
+# I also refactored one to six into seperate modules as I thought this was a more
+# scalable approach, see dev branch, but after doing so I found I prefered them in the menu class
+# for this size project so I have reverted back to them being here (despite rubocop saying they are too long)
+
 class Menu
   include Constants
   include Headings
@@ -20,16 +31,10 @@ class Menu
       padding: 1,
       align: :center,
       width: TTY::Screen.width,
-      border: {
-        type: :thick,
-        left: false,
-        right: false
-      }
+      border: { type: :thick, left: false, right: false }
     )
     print box
   end
-
-  # these methods one to six handle the presentation and user input for the options in the menu. Logic to reading/writing to the databsae in handled in the library class.
 
   def one
     clear
@@ -79,7 +84,7 @@ class Menu
     to_be_deleted = gets.strip.capitalize
     are_you_sure = PROMPT.yes?('Are you sure you want to delete')
     if are_you_sure
-      puts @recipe_list.delete_recipes(to_be_deleted) ? "Recipe #{to_be_deleted} has been deleted" : 'No matches in your current database'
+      puts @recipe_list.delete_recipes(to_be_deleted) ? "Recipe #{to_be_deleted} has been deleted" : 'No matches found'
     else
       puts "That's ok, nothing was deleted"
     end
