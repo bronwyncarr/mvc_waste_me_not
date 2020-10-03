@@ -93,14 +93,14 @@ class Menu
   def four
     clear
     heading(SEARCH)
-    search = Ingredient.new
+    search = IngredientList.new
     search.search_recipes
   end
 
   def five
     clear
     heading(SHOW)
-    search = Ingredient.new
+    search = IngredientList.new
     puts 'The delicious things you might just have in your fridge like:'
     puts search.list_all_ingredients
   end

@@ -1,5 +1,7 @@
-# this class handles the search by ingredient feature of the app.
-class Ingredient
+# This IngredientList class handles the search by ingredient feature and the display all ingredients.
+# It itializes with data from the json file.
+
+class IngredientList
   include Constants
   include Helpers
 
@@ -8,7 +10,8 @@ class Ingredient
     @tester = []
   end
 
-  # seperated as used in option 4 + 5
+  # Used in option 4 + 5
+  # Called from menu to list all ingredients and used to provide list for TTY prompt when searching
   def list_all_ingredients
     @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
@@ -47,7 +50,7 @@ class Ingredient
     all_list
   end
 
-  # display in table
+  # displays in table using Helpers module
   def display_as_table(list)
     if list.empty?
       puts 'Sorry, none of your recipes include all those ingreditents.'
@@ -57,8 +60,9 @@ class Ingredient
     end
   end
 
+  # Logic for all or any
   def handle_multiple
-    puts 'You selected more than one ingredient.'
+    puts 'You slist_all_ingredientselected more than one ingredient.'
     puts 'Would you like to see recipes containing:'
     all_or_any = PROMPT.select('ALL the ingredients or ANY combination?', %w[Any All])
     if all_or_any == 'Any'
@@ -69,7 +73,8 @@ class Ingredient
   end
 
   # starts the search
-  def search_recipes
+  # calls user search input to get input then executes based on how many options chosen.
+  def search_relist_all_ingredientscipes
     user_search_input
     if @tester.length == 1
       display_as_table(search_any_recipes)

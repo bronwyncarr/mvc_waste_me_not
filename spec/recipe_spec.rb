@@ -1,17 +1,12 @@
 # gems
-# require 'tty-box'
-# require 'tty-screen'
-# require 'tty-table'
 require 'tty-prompt'
 require 'colorize'
 require 'json'
 
 # relative files
 require_relative '../lib/constants'
-# require_relative '../lib/headings'
-# require_relative '../lib/ingredient'
 require_relative '../lib/library'
-# require_relative '../lib/menu'
+
 
 describe Library do
   before(:each) do

@@ -25,7 +25,7 @@ class Library
 
   def read_recipes
     CreateTable(@recipes)
-   end
+  end
 
   def delete_recipes(to_be_deleted)
     @was_it_there = false
