@@ -1,6 +1,4 @@
 # this class handles the search by ingredient feature of the app.
-require 'json'
-
 class Ingredient
   include Constants
 

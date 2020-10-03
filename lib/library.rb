@@ -23,7 +23,11 @@ class Library
   end
 
   def read_recipes
-    table = TTY::Table.new(TABLE_HEADING, @recipes)
+    formatted_rec = @recipes.map do |item|
+      ing = item[2].join(", ")
+      [item[0], item[1], ing]
+    end
+    table = TTY::Table.new(TABLE_HEADING, formatted_rec)
     table.render(:ascii, alignment: [:center], resize: true)
   end
 
