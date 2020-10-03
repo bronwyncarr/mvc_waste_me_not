@@ -191,13 +191,15 @@ terminal
 
 #### :rotating_light: Tests
 
-Here is a link to my testing spreadsheet.
+I used manual and rspec testing to ensure reliability of my project.
 
-If you use RSpec you can say...
+[My current testing spreadsheet can be viewed here.](<https://docs.google.com/spreadsheets/d/1cHNDyqiB5_8L6p6llwKlsn-SUK2J6mmzOLKfl3gDoOM/edit?usp=sharing>)
 
-To run tests run:
+To run my tests with rspec you can use:
 
+```bash
 rspec spec
+```
 
 #### :scroll: References (R3)
 
