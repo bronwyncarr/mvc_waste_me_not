@@ -155,12 +155,6 @@ Trello board on the 23-SEPT towards the start of the project:
 Trello board on the 27-SEPT midway through the project:
 ![Trello board midway through the project](./docs/27-09.png)
 
-Trello board on the 02-OCT towards the end of the project:
-![Trello board towards the end of the project](./docs/02-10.png)
-XXXXXXXXXXXXXXXXXXXXXXXXXX
-TRELLO
-XXXXXXXXXXXXXXXXXXXXXXXX
-
 ### :books: Installation and Setup (R10)
 
 1. Install ruby, we recommend using [asdf](https://asdf-vm.com/)
