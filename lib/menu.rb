@@ -122,8 +122,8 @@ class Menu
   end
     
   # actions option selected
-  def menu_actions(input_number)
-    case input_number
+  def menu_actions
+    case menu_options
     when 1
       one
     when 2
@@ -143,7 +143,7 @@ class Menu
   def start
     heading(STARTED)
     loop do
-      menu_actions(menu_options)
+      menu_actions
     end
   end
 end
