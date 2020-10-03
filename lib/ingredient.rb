@@ -1,6 +1,7 @@
 # this class handles the search by ingredient feature of the app.
 class Ingredient
   include Constants
+  include Helpers
 
   def initialize
     @recipes = JSON.parse(File.read(RECIPE_DATABASE))
@@ -52,8 +53,7 @@ class Ingredient
       puts 'Sorry, none of your recipes include all those ingreditents.'
     else
       puts "Great news! #{@tester.join(', ')} occur in the following delicious recipes:"
-      table = TTY::Table.new(TABLE_HEADING, list)
-      puts table.render(:ascii, alignment: [:center], resize: true)
+      CreateTable(list)
     end
   end
 
