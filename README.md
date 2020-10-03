@@ -192,11 +192,10 @@ terminal
 #### :rotating_light: Tests
 
 I used manual and rspec testing to ensure reliability of my project.
+
 [My current testing spreadsheet can be viewed here.](<https://docs.google.com/spreadsheets/d/1cHNDyqiB5_8L6p6llwKlsn-SUK2J6mmzOLKfl3gDoOM/edit?usp=sharing>)
 
-If you use RSpec you can say...
-
-To run tests run:
+To run my tests with rspec you can use:
 
 ```bash
 rspec spec
