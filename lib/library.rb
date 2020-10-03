@@ -1,5 +1,4 @@
 # This class handles the CRUD logic of interacting with the json database. It includes a create, read, save and delete method. Presentation logic was intentionally kept seperate. 
-
 require 'json'
 
 class Library

@@ -1,4 +1,5 @@
 #this class handles the search by ingredient feature of the app. 
+require 'json'
 
 class Ingredient
   include Constants
@@ -8,6 +9,11 @@ class Ingredient
     @tester = []
   end
 
+  # seperated from find ingredients as used in option 4 + 5
+  def list_all_ingredients
+    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
+  end
+    
   # any option
   def search_any_recipes
     any_list = []
@@ -38,11 +44,6 @@ class Ingredient
       table = TTY::Table.new(TABLE_HEADING, list)
       puts table.render(:ascii, alignment: [:center], resize: true)
     end
-  end
-
-  # seperated from find ingredients as used in option 4 + 5
-  def list_all_ingredients
-    @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
 
   # user_search_input
