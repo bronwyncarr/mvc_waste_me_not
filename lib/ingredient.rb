@@ -74,7 +74,7 @@ class IngredientList
 
   # starts the search
   # calls user search input to get input then executes based on how many options chosen.
-  def search_relist_all_ingredientscipes
+  def search_recipes
     user_search_input
     if @tester.length == 1
       display_as_table(search_any_recipes)
