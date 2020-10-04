@@ -13,28 +13,32 @@
 1. Install git if you don't already have it. Go to the [official docs](https://git-scm.com/downloads) for more information.
 
 1. Git clone the app to your home directory:
-  ```bash
-  git clone https://github.com/bronwyncarr/waste_me_not ~/waste_me_not
-  ```
+
+    ```bash
+    git clone https://github.com/bronwyncarr/waste_me_not ~/waste_me_not
+    ```
 
 1. Run the setup executable file:
-  ```bash
-  ~/waste_me_not/bin/setup
-  ```
+
+    ```bash
+    ~/waste_me_not/bin/setup
+    ```
 
 1. Open your .bash_profile in a text editor.
 
 1. Add this line:
-  ```bash
-  export PATH=$PATH:$HOME/waste_me_not/bin
-  ```
+
+    ```bash
+    export PATH=$PATH:$HOME/waste_me_not/bin
+    ```
 
 1. I recommend you restart your terminal to make sure .bash_profile has loaded the app into your PATH.
 
 1. Run the terminal executable to start the app:
-  ```bash
-  waste_me_not
-  ```
+
+    ```bash
+    waste_me_not
+    ```
 
 1. Additionally, the following arguments are available:
 `-h` or `--help` >>> Displays options
@@ -43,7 +47,7 @@
 
 ## :rotating_light: Testing
 
-I used manual and rspec testing to ensure reliability of my project. All functionality is manually tested and 3x tests were complete with rspec. I have stubbed my json database file with a test json file that is re-written before each test is conducted. 
+I used manual and rspec testing to ensure reliability of my project. All functionality is manually tested and 3x tests were complete with rspec. I have stubbed my json database file with a test json file that is re-written before each test is conducted.
 
 [My current testing spreadsheet can be viewed here.](<https://docs.google.com/spreadsheets/d/1cHNDyqiB5_8L6p6llwKlsn-SUK2J6mmzOLKfl3gDoOM/edit?usp=sharing>)
 
@@ -51,15 +55,15 @@ To run my rspec tests you can:
 
 1. Download the rspec gem, if you don't alrady have it.
 
-```bash
-gem install rspec
-```
+    ```bash
+    gem install rspec
+    ```
 
 1. From the waste-me-not folder, run:
 
-```bash
-rspec spec
-```
+    ```bash
+    rspec spec
+    ```
 
 1. You should see three green dots if all three tests passed. If there are any red 'F' then a test has failed.
 
