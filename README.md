@@ -171,7 +171,7 @@ The following flowchart shows the basic user options within the app.
 The user can learn about the app by typing *' -h'* or *'--help'* after the name of the app, e.g.
 
 ```bash
-terminal -h
+waste_me_not -h
 ```
 
 This displays a table which outlines the available shortcuts that can be used. There is shortcuts to go directly to:
