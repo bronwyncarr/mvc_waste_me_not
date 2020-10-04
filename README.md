@@ -24,6 +24,14 @@
     ~/waste_me_not/bin/setup
     ```
 
+    This will install the required dependacies if you don't already have them installed. The dependancies I have used are:
+
+    - 'colorize', '~> 0.8.1'
+    - 'tty-prompt', '~> 0.22.0'
+    - 'tty-box', '~> 0.6.0'
+    - 'tty-screen', '~> 0.8.1'
+    - 'tty-table', '~> 0.12.0'
+
 1. Open your .bash_profile in a text editor.
 
 1. Add this line:

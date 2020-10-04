@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative './lib/run'
-
 puts 'Installing dependencies 💎'
 
 # get bin directory absolute path
