@@ -5,8 +5,8 @@ require 'json'
 
 # relative files
 require_relative '../lib/constants'
+require_relative '../lib/helpers'
 require_relative '../lib/library'
-
 
 describe Library do
   before(:each) do
