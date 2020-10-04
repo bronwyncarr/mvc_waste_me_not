@@ -13,13 +13,11 @@
 1. Install git if you don't already have it. Go to the [official docs](https://git-scm.com/downloads) for more information.
 
 1. Git clone the app to your home directory:
-
   ```bash
   git clone https://github.com/bronwyncarr/waste_me_not ~/waste_me_not
   ```
 
 1. Run the setup executable file:
-
   ```bash
   ~/waste_me_not/bin/setup
   ```
@@ -27,7 +25,6 @@
 1. Open your .bash_profile in a text editor.
 
 1. Add this line:
-
   ```bash
   export PATH=$PATH:$HOME/waste_me_not/bin
   ```
@@ -35,7 +32,6 @@
 1. I recommend you restart your terminal to make sure .bash_profile has loaded the app into your PATH.
 
 1. Run the terminal executable to start the app:
-
   ```bash
   waste_me_not
   ```
