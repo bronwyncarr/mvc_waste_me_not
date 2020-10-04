@@ -218,8 +218,6 @@ Trello board on the 23-SEPT towards the start of the project:
 Trello board on the 27-SEPT midway through the project:
 ![Trello board midway through the project](./docs/27-09.png)
 
-
-
 #### :scroll: References (R3)
 
 <https://www.ozharvest.org/what-we-do/environment-facts/>
