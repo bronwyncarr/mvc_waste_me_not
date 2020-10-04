@@ -1,10 +1,73 @@
 # :recycle: WASTE-ME-NOT :recycle:
 
-## Terminal App Software Development Plan
+## Terminal App
 
-### :octocat: GitHub (R4)
+## :octocat: GitHub (R4)
 
-<https://github.com/bronwyncarr/terminal_app>
+<https://github.com/bronwyncarr/waste_me_not>
+
+## :books: Installation and Setup (R10)
+
+1. Install ruby, I recommend using [asdf.](https://asdf-vm.com/)
+
+1. Install git if you don't already have it. Go to the [official docs](https://git-scm.com/downloads) for more information.
+
+1. Git clone the app to your home directory:
+
+```bash
+git clone https://github.com/bronwyncarr/waste_me_not ~/waste_me_not
+```
+
+1. Run the setup executable file:
+
+```bash
+~/waste_me_not/bin/setup
+```
+
+1. Open your .bash_profile in a text editor.
+
+1. Add this line:
+
+```bash
+export PATH=$PATH:$HOME/waste_me_not/bin
+```
+
+1. I recommend you restart your terminal to make sure .bash_profile has loaded the app into your PATH.
+
+1. Run the terminal executable to start the app:
+
+```bash
+waste_me_not
+```
+
+1. Additionally, the following arguments are available:
+`-h` or `--help` >>> Displays options
+`-l` or `--list` >>> Lists all recipes
+`-s` or `--search` >>> Search by ingredient
+
+## :rotating_light: Testing
+
+I used manual and rspec testing to ensure reliability of my project. All functionality is manually tested and 3x tests were complete with rspec. I have stubbed my json database file with a test json file that is re-written before each test is conducted. 
+
+[My current testing spreadsheet can be viewed here.](<https://docs.google.com/spreadsheets/d/1cHNDyqiB5_8L6p6llwKlsn-SUK2J6mmzOLKfl3gDoOM/edit?usp=sharing>)
+
+To run my rspec tests you can:
+
+1. Download the rspec gem, if you don't alrady have it.
+
+```bash
+gem install rspec
+```
+
+1. From the waste-me-not folder, run:
+
+```bash
+rspec spec
+```
+
+1. You should see three green dots if all three tests passed. If there are any red 'F' then a test has failed.
+
+## Assignment Software Development Plan
 
 ### :clipboard: Purpose and scope of the terminal app (R5)
 
@@ -155,51 +218,7 @@ Trello board on the 23-SEPT towards the start of the project:
 Trello board on the 27-SEPT midway through the project:
 ![Trello board midway through the project](./docs/27-09.png)
 
-### :books: Installation and Setup (R10)
 
-1. Install ruby, we recommend using [asdf](https://asdf-vm.com/)
-
-1. Install git, go to the [official docs](https://git-scm.com/downloads) for more information.
-
-1. `git clone` the app to your home directory
-
-```bash
-git clone https://github.com/bronwyncarr/terminal_app ~/terminal-app
-```
-
-1. Run the setup executable file
-
-```bash
-~/terminal-app/bin/setup
-```
-
-1. Open your .bash_profile in a text editor
-
-1. Add this line
-
-```bash
-export PATH=$PATH:$HOME/terminal-app/bin
-```
-
-1. Restart your terminal to make sure .bash_profile loads the app into your PATH
-
-1. Run the bookmarks executable to start the app
-
-```bash
-terminal
-```
-
-#### :rotating_light: Tests
-
-I used manual and rspec testing to ensure reliability of my project.
-
-[My current testing spreadsheet can be viewed here.](<https://docs.google.com/spreadsheets/d/1cHNDyqiB5_8L6p6llwKlsn-SUK2J6mmzOLKfl3gDoOM/edit?usp=sharing>)
-
-To run my tests with rspec you can use:
-
-```bash
-rspec spec
-```
 
 #### :scroll: References (R3)
 
