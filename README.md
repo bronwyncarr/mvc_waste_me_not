@@ -49,9 +49,10 @@
     ```
 
 1. Additionally, the following arguments are available:
-`-h` or `--help` >>> Displays options
-`-l` or `--list` >>> Lists all recipes
-`-s` or `--search` >>> Search by ingredient
+
+- `-h` or `--help` >>> Displays options
+- `-l` or `--list` >>> Lists all recipes
+- `-s` or `--search` >>> Search by ingredient
 
 ## :rotating_light: Testing
 
