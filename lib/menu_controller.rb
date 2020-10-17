@@ -17,14 +17,10 @@ class Menu
 
   def initialize
     @recipe_list = Library.new
+    @ingredient_list = IngredientList.new
+    @menu_view = MenuViews.new
   end
 
-  # clear terminal
-  def clear
-    puts "\e[2J\e[f"
-  end
-
-  # header
   def heading(header)
     box = TTY::Box.frame(
       HOME, header,
@@ -36,77 +32,56 @@ class Menu
     print box
   end
 
-  def one
-    clear
+  def want_to_view
+    @menu_view.clear
     heading(VIEW)
     if @recipe_list.recipes.empty?
-      puts "There's no recipes in your database yet. Let's add some!"
+      @menu_view.no_recipes
     else
-      puts @recipe_list.read_recipes
+      puts @recipe_list.display_recipes
     end
   end
 
-  def two
-    clear
+  def want_to_add
+    @menu_view.clear
     heading(CREATE)
+    @menu_view.new_recipe
     items = []
-    puts "Let's create a new recipe"
     values = %w[name description ingredients]
     values.each do |item|
-      puts "Please enter the recipe #{item}?"
-      puts 'Please seperate with a space only.' if item == 'ingredients'
-      print '> '
-      begin
-        item = if item == 'ingredients'
-                 gets.strip.downcase.split
-               else
-                 gets.strip.capitalize
-               end
-        raise('Required information') if item.empty?
-      rescue StandardError => e
-        p e
-        p 'Please enter a value'
-        retry
-      end
-      items << item
+        entered_item = @menu_view.new_recipe_input(item)
+        items << entered_item
     end
     @recipe_list.create_recipes(items)
-    puts 'Your recipe has been added to the database.'
+    @menu_view.to_add
   end
 
-  def three
-    clear
+  def want_to_delete
+    @menu_view.clear
     heading(DELETE)
-    puts 'These are your recipes:'
-    puts @recipe_list.read_recipes
-    puts "What's the title of the one you would like to delete?"
-    print '> '
-    to_be_deleted = gets.strip.capitalize
-    are_you_sure = PROMPT.yes?('Are you sure you want to delete')
+    to_be_deleted = @menu_view.before_delete(@recipe_list.display_recipes)
+    are_you_sure = @menu_view.are_you_sure
     if are_you_sure
-      puts @recipe_list.delete_recipes(to_be_deleted) ? "Recipe #{to_be_deleted} has been deleted" : 'No matches found'
+      @menu_view.to_delete(to_be_deleted, @recipe_list)
     else
-      puts "That's ok, nothing was deleted"
+      @menu_view.not_to_delete
     end
   end
 
   def four
-    clear
+    @menu_view.clear
     heading(SEARCH)
-    search = IngredientList.new
-    search.search_recipes
+    @ingredient_list.search_recipes
   end
 
-  def five
-    clear
+  def want_all_ingredients
+    @menu_view.clear
     heading(SHOW)
-    search = IngredientList.new
-    puts 'The delicious things you might just have in your fridge like:'
-    puts search.list_all_ingredients
+    puts @ingredient_list.list_all_ingredients
   end
 
-  def six
-    clear
+  def want_to_exit
+    @menu_view.clear
     heading(EXIT)
     @recipe_list.save_recipes
     exit
@@ -128,17 +103,17 @@ class Menu
   def menu_actions
     case menu_options
     when 1
-      one
+      want_to_view
     when 2
-      two
+      want_to_add
     when 3
-      three
+      want_to_delete
     when 4
       four
     when 5
-      five
+      want_all_ingredients
     when 6
-      six
+      want_to_exit
     end
   end
 

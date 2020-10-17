@@ -6,6 +6,7 @@ class IngredientList
   include Helpers
 
   def initialize
+    @recipe_list = Library.new
     @recipes = JSON.parse(File.read(RECIPE_DATABASE))
     @tester = []
   end
@@ -49,6 +50,7 @@ class IngredientList
     end
     all_list
   end
+
 
   # displays in table using Helpers module
   def display_as_table(list)

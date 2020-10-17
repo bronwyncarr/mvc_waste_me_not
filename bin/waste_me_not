@@ -13,9 +13,12 @@ require_relative '../lib/headings'
 require_relative '../lib/helpers'
 require_relative '../lib/ingredient'
 require_relative '../lib/library'
-require_relative '../lib/menu'
+require_relative '../lib/menu_view'
+require_relative '../lib/menu_controller'
 
-app = Menu.new
+menu_controller = Menu.new
+menu_controller.start
+
 
 def help_docs
   table = TTY::Table.new

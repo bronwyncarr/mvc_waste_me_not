@@ -23,7 +23,7 @@ class Library
     save_recipes
   end
 
-  def read_recipes
+  def display_recipes
     CreateTable(@recipes)
   end
 
