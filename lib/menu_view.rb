@@ -70,4 +70,17 @@ class MenuViews
   def list_ingredients
     puts 'Some of delicious things you might just have in your kitchen already:'
   end
+
+  def prompt_user_for_ing(ing_list)
+    begin
+      @tester = PROMPT.multi_select('Please select one or more ingredients?', ing_list, cycle: true, per_page: 12)
+      raise('Ingredient required') if @tester.empty?
+    rescue StandardError => e
+      puts e
+      puts 'Please select an ingredient using the space bar'
+      retry
+    end
+    @tester
+  end
+
 end

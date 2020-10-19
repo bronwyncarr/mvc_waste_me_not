@@ -17,20 +17,6 @@ class IngredientList
     @ing_list = @recipes.map { |item| item[2] }.flatten.uniq.sort
   end
 
-  # user_search_input
-  def user_search_input
-    begin
-      list_all_ingredients
-      @tester = PROMPT.multi_select('Please select one or more ingredients?', @ing_list, cycle: true, per_page: 12)
-      raise('Ingredient required') if @tester.empty?
-    rescue StandardError => e
-      puts e
-      puts 'Please select an ingredient using the space bar'
-      retry
-    end
-    @tester
-  end
-
   # any option
   def search_any_recipes
     any_list = []
@@ -76,8 +62,8 @@ class IngredientList
 
   # starts the search
   # calls user search input to get input then executes based on how many options chosen.
-  def search_recipes
-    user_search_input
+  def search_recipes(tester)
+    @tester = tester
     if @tester.length == 1
       display_as_table(search_any_recipes)
     else

@@ -68,10 +68,12 @@ class Menu
     end
   end
 
-  def four
+  def want_to_search
     @menu_view.clear
     heading(SEARCH)
-    @ingredient_list.search_recipes
+    ingg_list = @ingredient_list.list_all_ingredients
+    tester = @menu_view.prompt_user_for_ing(ingg_list)
+    @ingredient_list.search_recipes(tester)
   end
 
   def want_all_ingredients
@@ -109,7 +111,7 @@ class Menu
     when 3
       want_to_delete
     when 4
-      four
+      want_to_search
     when 5
       want_all_ingredients
     when 6
